@@ -7,8 +7,8 @@ import {routerMode} from './config/env'
 import './config/rem'
 
 Vue.use(VueRouter)   //vue对象的.use方法 VueRouter是实参 
-const router = new VueRouter({  
-	routes,
+const router = new VueRouter({  //新建一个常量对象  js里的对象不是基于java一样的类来的 而是基于对象函数和原型链的 这样写 router就可以继承vuerouter函数的所有属性方法 同时定义自己别的属性和方法
+	routes,                      //router构造函数执行时 将函数的this指向新生成的router 所以原函数内的属性方法都指向了router 
 	mode: routerMode,
 	strict: process.env.NODE_ENV !== 'production',
 	scrollBehavior (to, from, savedPosition) { 
@@ -23,7 +23,7 @@ const router = new VueRouter({
 	}
 })
 
-new Vue({
+new Vue({ //生成一个匿名vue对象 同时执行对象的.mount方法 挂载在id ＃app上  .mount方法在vue构造函数里封装了 vue构造函数是上面的import引入的 
 	router,
 	store,
 }).$mount('#app')
